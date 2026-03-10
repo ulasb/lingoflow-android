@@ -1,0 +1,5 @@
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.settings.SettingsViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.settings.SettingsViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.chat.ChatViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.chat.ChatViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.dashboard.DashboardViewModel

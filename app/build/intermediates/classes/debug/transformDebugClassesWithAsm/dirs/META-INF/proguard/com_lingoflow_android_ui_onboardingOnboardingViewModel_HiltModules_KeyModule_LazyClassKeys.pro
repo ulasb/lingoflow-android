@@ -1,0 +1,14 @@
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.settings.SettingsViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.settings.SettingsViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.chat.ChatViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.chat.ChatViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.dashboard.DashboardViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.dashboard.DashboardViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.history.HistoryDetailViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.history.HistoryDetailViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.history.HistoryViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.history.HistoryViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.onboarding.ModelDownloadViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.onboarding.ModelDownloadViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.onboarding.OnboardingViewModel
+-keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.onboarding.OnboardingViewModel
