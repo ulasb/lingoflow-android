@@ -1,2 +1,0 @@
--keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.settings.SettingsViewModel
--keep,allowobfuscation,allowshrinking class com.lingoflow.android.ui.settings.SettingsViewModel
