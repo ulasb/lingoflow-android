@@ -20,4 +20,4 @@
 }
 
 # Gemini API data classes
--keep class com.lingoflow.android.llm.GeminiApi** { *; }
+-keep class com.lingoflow.android.llm.Gemini* { *; }

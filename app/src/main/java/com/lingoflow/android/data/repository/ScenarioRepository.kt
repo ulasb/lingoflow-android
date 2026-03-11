@@ -17,7 +17,10 @@ class ScenarioRepository @Inject constructor(
     suspend fun getById(id: String): ScenarioEntity? = scenarioDao.getById(id)
 
     suspend fun replaceAll(scenarios: List<ScenarioEntity>) {
-        scenarioDao.deleteAll()
+        scenarioDao.replaceAll(scenarios)
+    }
+
+    suspend fun insert(scenarios: List<ScenarioEntity>) {
         scenarioDao.insertAll(scenarios)
     }
 

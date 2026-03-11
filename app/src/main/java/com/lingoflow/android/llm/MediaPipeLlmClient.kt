@@ -116,7 +116,11 @@ class MediaPipeLlmClient @Inject constructor(
     }
 
     private fun formatPrompt(systemPrompt: String, history: List<ChatMessage>, userMessage: String): String {
-        fun escape(text: String) = text.replace("<start_of_turn>", "").replace("<end_of_turn>", "")
+        fun escape(text: String) = text
+            .replace("<start_of_turn>", "")
+            .replace("<end_of_turn>", "")
+            .replace("<eos>", "")
+            .replace("<bos>", "")
         val sb = StringBuilder()
         sb.appendLine("<start_of_turn>user")
         sb.appendLine(escape(systemPrompt))

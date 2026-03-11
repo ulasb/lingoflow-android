@@ -182,16 +182,16 @@ class ChatViewModel @Inject constructor(
 
             // Generate replacement scenario
             viewModelScope.launch {
-                val newScenarios = chatRepository.generateScenarios(
-                    modelType = modelType,
-                    practiceLanguage = settings.practiceLanguage,
-                    uiLanguage = settings.uiLanguage,
-                    count = 1
-                )
-                for (s in newScenarios) {
-                    scenarioRepository.replaceAll(
-                        scenarioRepository.getAll() + s
+                try {
+                    val newScenarios = chatRepository.generateScenarios(
+                        modelType = modelType,
+                        practiceLanguage = settings.practiceLanguage,
+                        uiLanguage = settings.uiLanguage,
+                        count = 1
                     )
+                    scenarioRepository.insert(newScenarios)
+                } catch (e: Exception) {
+                    android.util.Log.e("ChatViewModel", "Failed to generate replacement scenario", e)
                 }
             }
         }
@@ -238,7 +238,9 @@ class ChatViewModel @Inject constructor(
             val settings = settingsRepository.get()
             try {
                 ensureModelLoaded(settings.modelType)
-            } catch (_: Exception) {}
+            } catch (e: Exception) {
+                android.util.Log.e("ChatViewModel", "Failed to load model for explanation", e)
+            }
             val result = chatRepository.explainLine(
                 modelType = settings.modelType,
                 practiceLanguage = settings.practiceLanguage,

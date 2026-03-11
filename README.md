@@ -24,9 +24,9 @@ After each exchange, the app evaluates whether the user has achieved the scenari
 
 ### Two LLM Modes
 
-**On-Device (offline):** Uses [MediaPipe Tasks GenAI](https://ai.google.dev/edge/mediapipe/solutions/genai/llm_inference) with a Gemma 3 1B int4-quantized model (~529 MB download). The model is downloaded on first launch and loaded eagerly into memory at app startup. Works completely offline after download.
+**On-Device (offline):** Uses [MediaPipe Tasks GenAI](https://ai.google.dev/edge/mediapipe/solutions/genai/llm_inference) with the Gemma 3n E4B int4-quantized model (~4.4 GB download). The model is downloaded on first launch and loaded eagerly into memory at app startup. Works completely offline after download.
 
-**Cloud (Gemini API):** Calls Google's Gemini API via REST. Supports `gemini-2.0-flash`, `gemini-1.5-flash`, and `gemini-1.5-pro`. API key is stored in Android's `EncryptedSharedPreferences`.
+**Cloud (Gemini API):** Calls Google's Gemini API via REST. Supports `gemini-2.5-flash`, `gemini-2.0-flash`, and `gemini-2.5-pro`. API key is stored in Android's `EncryptedSharedPreferences`.
 
 The app presents a first-launch onboarding screen where users choose between the two modes. The choice can be changed later in Settings.
 

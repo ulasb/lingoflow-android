@@ -83,7 +83,7 @@ class ChatRepository @Inject constructor(
                 systemPrompt = "",
                 userMessage = prompt
             )
-            response.trim().uppercase().contains("REACHED")
+            response.trim().uppercase() == "REACHED"
         } catch (e: Exception) {
             Log.e(TAG, "Goal evaluation failed", e)
             false

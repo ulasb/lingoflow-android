@@ -59,25 +59,27 @@ class GeminiApiClient @Inject constructor(
         .readTimeout(120, TimeUnit.SECONDS)
         .build()
 
-    private fun getEncryptedPrefs() = EncryptedSharedPreferences.create(
-        context,
-        PREFS_NAME,
-        MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build(),
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-    )
-
-    fun getApiKey(): String? = getEncryptedPrefs().getString(KEY_API_KEY, null)
-
-    fun setApiKey(key: String) {
-        getEncryptedPrefs().edit().putString(KEY_API_KEY, key).apply()
+    private val encryptedPrefs by lazy {
+        EncryptedSharedPreferences.create(
+            context,
+            PREFS_NAME,
+            MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build(),
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
     }
 
-    fun getModel(): String = getEncryptedPrefs().getString(KEY_MODEL, AVAILABLE_MODELS[0])
+    fun getApiKey(): String? = encryptedPrefs.getString(KEY_API_KEY, null)
+
+    fun setApiKey(key: String) {
+        encryptedPrefs.edit().putString(KEY_API_KEY, key).apply()
+    }
+
+    fun getModel(): String = encryptedPrefs.getString(KEY_MODEL, AVAILABLE_MODELS[0])
         ?: AVAILABLE_MODELS[0]
 
     fun setModel(model: String) {
-        getEncryptedPrefs().edit().putString(KEY_MODEL, model).apply()
+        encryptedPrefs.edit().putString(KEY_MODEL, model).apply()
     }
 
     fun hasApiKey(): Boolean = !getApiKey().isNullOrBlank()
@@ -101,9 +103,13 @@ class GeminiApiClient @Inject constructor(
             systemInstruction = GeminiContent(parts = listOf(GeminiPart(systemPrompt)))
         )
 
-        val url = "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$apiKey"
+        val url = "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent"
         val body = gson.toJson(request).toRequestBody("application/json".toMediaType())
-        return Request.Builder().url(url).post(body).build()
+        return Request.Builder()
+            .url(url)
+            .post(body)
+            .addHeader("x-goog-api-key", apiKey)
+            .build()
     }
 
     override fun generate(

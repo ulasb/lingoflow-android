@@ -4,29 +4,37 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.lingoflow.android.data.entity.ScenarioEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ScenarioDao {
-    @Query("SELECT * FROM active_scenarios")
-    fun observeAll(): Flow<List<ScenarioEntity>>
+abstract class ScenarioDao {
+
+    @Transaction
+    open suspend fun replaceAll(scenarios: List<ScenarioEntity>) {
+        deleteAll()
+        insertAll(scenarios)
+    }
 
     @Query("SELECT * FROM active_scenarios")
-    suspend fun getAll(): List<ScenarioEntity>
+    abstract fun observeAll(): Flow<List<ScenarioEntity>>
+
+    @Query("SELECT * FROM active_scenarios")
+    abstract suspend fun getAll(): List<ScenarioEntity>
 
     @Query("SELECT * FROM active_scenarios WHERE id = :id")
-    suspend fun getById(id: String): ScenarioEntity?
+    abstract suspend fun getById(id: String): ScenarioEntity?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAll(scenarios: List<ScenarioEntity>)
+    abstract suspend fun insertAll(scenarios: List<ScenarioEntity>)
 
     @Query("DELETE FROM active_scenarios")
-    suspend fun deleteAll()
+    abstract suspend fun deleteAll()
 
     @Query("DELETE FROM active_scenarios WHERE id = :id")
-    suspend fun deleteById(id: String)
+    abstract suspend fun deleteById(id: String)
 
     @Query("SELECT COUNT(*) FROM active_scenarios")
-    suspend fun count(): Int
+    abstract suspend fun count(): Int
 }
