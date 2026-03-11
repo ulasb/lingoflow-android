@@ -116,18 +116,19 @@ class MediaPipeLlmClient @Inject constructor(
     }
 
     private fun formatPrompt(systemPrompt: String, history: List<ChatMessage>, userMessage: String): String {
+        fun escape(text: String) = text.replace("<start_of_turn>", "").replace("<end_of_turn>", "")
         val sb = StringBuilder()
         sb.appendLine("<start_of_turn>user")
-        sb.appendLine(systemPrompt)
+        sb.appendLine(escape(systemPrompt))
         sb.appendLine("<end_of_turn>")
         for (msg in history) {
             val role = if (msg.role == "user") "user" else "model"
             sb.appendLine("<start_of_turn>$role")
-            sb.appendLine(msg.content)
+            sb.appendLine(escape(msg.content))
             sb.appendLine("<end_of_turn>")
         }
         sb.appendLine("<start_of_turn>user")
-        sb.appendLine(userMessage)
+        sb.appendLine(escape(userMessage))
         sb.appendLine("<end_of_turn>")
         sb.appendLine("<start_of_turn>model")
         return sb.toString()
