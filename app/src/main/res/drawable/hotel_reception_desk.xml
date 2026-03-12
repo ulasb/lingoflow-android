@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <path android:fillColor="#FFF8E1" android:pathData="M0,0h200v200H0z"/>
+    <!-- Wall -->
+    <path android:fillColor="#FFECB3" android:pathData="M0,0h200v130H0z"/>
+    <!-- Desk -->
+    <path android:fillColor="#6D4C41" android:pathData="M20,120h160v15H20z"/>
+    <path android:fillColor="#5D4037" android:pathData="M20,135h160v40H20z"/>
+    <!-- Key rack -->
+    <path android:fillColor="#8D6E63" android:pathData="M140,30h40v70h-40z"/>
+    <path android:fillColor="#FFD54F" android:pathData="M150,45 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+    <path android:fillColor="#FFD54F" android:pathData="M165,45 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+    <path android:fillColor="#FFD54F" android:pathData="M150,65 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+    <!-- Bell -->
+    <path android:fillColor="#FFD54F" android:pathData="M90,110 a10,8 0 1,0 20,0 L90,110z"/>
+    <!-- Floor -->
+    <path android:fillColor="#D7CCC8" android:pathData="M0,175h200v25H0z"/>
+</vector>

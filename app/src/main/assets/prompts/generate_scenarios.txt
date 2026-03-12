@@ -1,0 +1,11 @@
+Generate {{count}} daily life scenarios for learning {{practice_language}}.
+Reply with ONLY a JSON array. No other text before or after the JSON.
+Each object has exactly these 5 fields and no others:
+- "id": unique string like "train_station"
+- "setting": brief setting description in {{ui_language}}
+- "goal": conversation goal in {{ui_language}}
+- "description": 1-2 sentences in {{ui_language}} describing the place and who the user talks to
+- "clipart": one of "train_station_ticket_counter", "convenience_store_snack_aisle", "restaurant_ordering_table", "hotel_reception_desk", "hospital_reception", or "default_conversation"
+
+Example format:
+[{"id":"cafe","setting":"Coffee shop","goal":"Order a drink","description":"You are at a cozy cafe. The barista greets you.","clipart":"default_conversation"}]
